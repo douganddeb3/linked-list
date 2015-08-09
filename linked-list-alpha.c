@@ -67,7 +67,7 @@ void add_node(char* this1, struct node* ptrNode, int count, char* definition);
 void showM(char* seek, struct node* ptrNodeB, int count2);
 
 
-
+// Space otter was here
 int main() {
     count2 = 0;
     char input[50];
