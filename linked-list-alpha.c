@@ -20,7 +20,6 @@ struct node {
     char* meaning;
     struct node* a;
     struct node* b;
-
     struct node* c;
     struct node* d;
     struct node* e;
@@ -45,114 +44,85 @@ struct node {
     struct node* x;
     struct node* y;
     struct node* z;
-
 };
 
 int add;
 int iadd;
-
 int q;
-
 int count;
 int count2;
 int countDown;
+
 char* this1;
 char* seek;
-
 char* definition;
+
 struct node* ptrNodeB;
 struct node* ptrNode;
 struct node* head;
+
 void add_node(char* this1, struct node* ptrNode, int count, char* definition);
 void showM(char* seek, struct node* ptrNodeB, int count2);
 
-
-// Space otter was here
 int main() {
     count2 = 0;
     char input[50];
     char* word;
     char definition[50];
-
-
     char seek1[50];
-
     struct node* ptrNode;
-    //ptrNode = malloc(sizeof(struct node));
-    //ptrNode->a = ptrNode->b = NULL;
-    //ptrNode->meaning[5000] = '\0';
     struct node* head;
     head  = malloc(sizeof(struct node));
     head->a = head->b = head->c = head->d = head->e = head->f = head->g = head->h = head->i = head->j = head->k = head->l = head->m = head->n = head->o =head->p = head->q = NULL;
     head->r = head->s = head->t = head->u = head->v = head->w = head->x = head->y = head->z = NULL;
-
-
-
     char my_string[50];
     int loop = 0;
+
     while(loop == 0){
-    countDown = 0;
-    printf("\nPress 'a' to add a word and meaning.\nPress 'b' to lookup a word.\nPress 'c' to exit.\n");
+        countDown = 0;
+        printf("\nPress 'a' to add a word and meaning.\nPress 'b' to lookup a word.\nPress 'c' to exit.\n");
+        scanf("%s",&input);
+        switch (*input){
 
-    scanf("%s",&input);
-    switch (*input){
-        case 'a':
-            printf("What is your word? \n");
+            case 'a':
+                printf("What is your word? \n");
+                scanf("%s",&input);
+                getchar();
+                printf("What is your definition? \n");
+                fgets(my_string, 50, stdin);
+                sscanf(my_string, "%s", definition);
+                add_node(input,head,countDown,definition);
+                break;
 
-            scanf("%s",&input);
-            getchar();
-            printf("What is your definition? \n");
-            fgets(my_string, 50, stdin);
-            sscanf(my_string, "%s", definition);
- /*   if (my_string[0] == '\n'){
-        add_node(input,head,countDown,definition);
-        break;
+            case 'b':
+                printf("What word are you looking up?");
+                scanf("%s",&seek1);
+                showM(seek1,head,countDown);
+                break;
+
+            case 'c':
+                loop++;
+                return (EXIT_SUCCESS);
+                break;
+        }
     }
-
-            }*/
-
-           add_node(input,head,countDown,definition);
-           //C:\Users\Douglas\Documents\NetBeansProjects\CppApplication_10\cdata
-
-
-            break;
-        case 'b':
-            printf("What word are you looking up?");
-            scanf("%s",&seek1);
-            showM(seek1,head,countDown);
-            break;
-        case 'c':
-            loop++;
-
-            return (EXIT_SUCCESS);
-            break;
-    }
-
-
 }
-}
-
 
 void showM(char* seek, struct node* ptrNodeB, int count2){
-
-
-
         switch(*(seek + count2)){
 
             case 'a':
                 printf("\ncount2=  %d\n", count2);
-
                 printf("\nptrNodeB->a->meaning= %s\nptrNodeB->a= %d", ptrNodeB->a->meaning, ptrNodeB->a);
                 if((count2 + 1) == strlen(seek)){
                     printf("\n\nmeaning is %s\nptrNodeB->a =  %d",ptrNodeB->a->meaning, ptrNodeB->a);
-
                     break;
                 }
-                if((count2 + 1) < strlen(seek)){
-                count2++;
-                showM(seek,ptrNodeB->a,count2);
-
-                }break;
+                if((count2 + 1) < strlen(seek)) {
+                    count2++;
+                    showM(seek,ptrNodeB->a,count2);
+                }
+                break;
 
             case 'b':
                 printf("\ncount2=  %d\n", count2);
@@ -161,13 +131,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     printf("\n meaning is %s\n ",ptrNodeB->b->meaning);
                     break;
                 }
-                if((count2 + 1) < strlen(seek)){
-               // struct node* nextB;
-               // nextB = ptrNodeB->b;
-                count2++;
-                showM(seek,ptrNodeB->b,count2);
+                if((count2 + 1) < strlen(seek)) {
+                    count2++;
+                    showM(seek,ptrNodeB->b,count2);
+                }
+                break;
 
-                }break;
             case 'c':
                 printf("\ncount2=  %d\n", count2);
                 printf("\nptrNodeB->c->meaning= %s\nptrNodeB->c= %d", ptrNodeB->c->meaning, ptrNodeB->c);
@@ -176,12 +145,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->c;
-                count2++;
-                showM(seek,nextB,count2);
-
-                }break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->c;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'd':
                 printf("\ncount2=  %d\n", count2);
@@ -191,12 +160,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->d;
-                count2++;
-                showM(seek,nextB,count2);
-
-                }break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->d;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'e':
                 printf("\ncount2=  %d\n", count2);
@@ -206,12 +175,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->e;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->e;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'f':
                 printf("\ncount2=  %d\n", count2);
@@ -221,12 +190,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->f;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->f;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'g':
                 printf("\ncount2=  %d\n", count2);
@@ -236,12 +205,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->g;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->g;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'h':
                 printf("\ncount2=  %d\n", count2);
@@ -251,12 +220,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->h;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->h;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'i':
                 printf("\ncount2=  %d\n", count2);
@@ -266,12 +235,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->i;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->i;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'j':
                 printf("\ncount2=  %d\n", count2);
@@ -281,12 +250,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->j;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->j;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'k':
                 printf("\ncount2=  %d\n", count2);
@@ -296,12 +265,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->k;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->k;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'l':
                 printf("\ncount2=  %d\n", count2);
@@ -311,12 +280,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->l;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->l;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'm':
                 printf("\ncount2=  %d\n", count2);
@@ -326,12 +295,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->m;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->m;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'n':
                 printf("\ncount2=  %d\n", count2);
@@ -341,12 +310,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->n;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->n;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'o':
                 printf("\ncount2=  %d\n", count2);
@@ -356,12 +325,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->o;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->o;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'p':
                 printf("\ncount2=  %d\n", count2);
@@ -371,12 +340,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->p;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->p;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'q':
                 printf("\ncount2=  %d\n", count2);
@@ -386,12 +355,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->q;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->q;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'r':
                 printf("\ncount2=  %d\n", count2);
@@ -401,12 +370,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->r;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->r;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 's':
                 printf("\ncount2=  %d\n", count2);
@@ -416,12 +385,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->s;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->s;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 't':
                 printf("\ncount2=  %d\n", count2);
@@ -431,12 +400,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->t;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->t;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'u':
                 printf("\ncount2=  %d\n", count2);
@@ -446,12 +415,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->u;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->u;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'v':
                 printf("\ncount2=  %d\n", count2);
@@ -461,12 +430,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->v;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->v;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'w':
                 printf("\ncount2=  %d\n", count2);
@@ -476,12 +445,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->w;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->w;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'x':
                 printf("\ncount2=  %d\n", count2);
@@ -491,12 +460,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->x;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->x;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'y':
                 printf("\ncount2=  %d\n", count2);
@@ -506,12 +475,12 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->y;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->y;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
+                break;
 
             case 'z':
                 printf("\ncount2=  %d\n", count2);
@@ -521,29 +490,24 @@ void showM(char* seek, struct node* ptrNodeB, int count2){
                     break;
                 }
                 if((count2 + 1) < strlen(seek)){
-                struct node* nextB;
-                nextB = ptrNodeB->z;
-                count2++;
-                showM(seek,nextB,count2);
-
-                } break;
+                    struct node* nextB;
+                    nextB = ptrNodeB->z;
+                    count2++;
+                    showM(seek,nextB,count2);
+                }
                 break;
-
         }
 }
 
 
 void add_node(char* this1,struct node* ptrNode,int count,char* definition){
 
-                        printf("\n %cgreetings\nptrNode = %d  \ncount is  %d",*this1, ptrNode, count);
+    printf("\n %cgreetings\nptrNode = %d  \ncount is  %d",*this1, ptrNode, count);
 
-                       // char add;
-                       // int iadd;
+    // char add;
+    // int iadd;
 
     switch (*(this1 + count)){
-
-
-
 
                         case 'a':
 
